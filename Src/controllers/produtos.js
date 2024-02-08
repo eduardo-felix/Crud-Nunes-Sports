@@ -30,7 +30,7 @@ const adicionarProdutos = async (req, res) => {
         if (!produtoEncontrado) {
             return res.status(404).json({ mensagem: 'Produto não encontrado' })
         }
-        const produtoEditado = await knex('produtos').update({produtoParaEditar})
+        const produtoEditado = await knex('produtos').update(produtoParaEditar)
         .where('id', id)
         .returning('*')                
         return res.status(200).json(produtoEditado)            
@@ -46,7 +46,7 @@ const adicionarProdutos = async (req, res) => {
             if (!produtoEncontrado) {
                 return res.status(404).json({ mensagem: 'Produto não encontrado' })
             }
-            await knex('charges').where('id', id).del()                
+            await knex('produtos').where('id', id).del()                
             return res.status(204).send()            
             } catch (error) {
                 res.status(500).json({ mensagem: error.message }) 

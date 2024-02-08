@@ -1,3 +1,8 @@
-const b = "eduardo"
+const express = require('express')
+require('dotenv').config()
+const app = express()
+const PORT = process.env.PORT || 8000
 
-console.log(b)
+app.use(express.json())
+
+app.listen(PORT, () => console.log(`API rodando na porta ${PORT}`))
